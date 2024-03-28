@@ -50,8 +50,17 @@ int lifi;
 } lus_t;
 extern lus_t lus;
 
-void monty_pint(stack_t **head, unsigned int number);
-void free_stack(stack_t *head);
 
+void free_stack(stack_t *head);
+/**int main(int argc, char *argv[])*/
+void f_nop(stack_t **head, unsigned int counter);
+void f_pop(stack_t **head, unsigned int counter);
+void f_pall(stack_t **head, unsigned int number);
+void f_push(stack_t **head, unsigned int number);
+void f_pint(stack_t **head, unsigned int number);
+void addnode(stack_t **head, int n);
+void f_add(stack_t **head, unsigned int counter);
+void addqueue(stack_t **head, int n);
+void f_queue(stack_t **head, unsigned int counter);
 
 #endif
