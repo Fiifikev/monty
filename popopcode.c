@@ -1,78 +1,106 @@
 #include "monty.h"
 /**
- * monty_pop - removes elemts in a stack
- * @head: head of stack
- * @counter: line number
- * Return: none
- */
-void f_pop(stack_t **head, unsigned int counter)
-{
-stack_t *apt;
-
-if (head == NULL)
-{
-fprintf(stderr, "L%d: cant pop an empty stack \n", counter);
-fclose(lus.file);
-free(lus.info);
-free_stack(*head);
-exit(EXIT_FAILURE);
-}
-apt = *head;
-*head = apt->next;
-free(apt);
-/**
- * monty_pall - adds value on the stack
+ * f_pall - adds value on the stack
  * @head: head of stack
  * @counter: counter number
  * Return: none
  */
 void f_pall(stack_t **head, unsigned int counter)
 {
-stack_t *apt;
+stack_t *h;
 (void)counter;
 
-apt = *head;
-if (apt == NULL)
+h = *head;
+if (h == NULL)
 return;
-while (apt)
+while (h)
 {
-printf("%d\n", apt->n);
-apt = apt->next;
+printf("%d\n", h->n);
+h = h->next;
 }
 }
 /**
- * monty_push - pushes element to stack
+ * f_pop - rmove value on stack
  * @head: head
- * @counter:num line
- * Return: none
+ * @counter: num line
+ * return : none
+ */
+void f_pop(stack_t **head, unsigned int counter)
+{
+stack_t *h;
+
+if (*head == NULL)
+{
+fprintf(stderr, "L%d: can't pop an empty stack\n", counter);
+fclose(bus.file);
+free(bus.content);
+free_stack(*head);
+exit(EXIT_FAILURE);
+}
+h = *head;
+*head = h->next;
+free(h);
+}
+
+/**
+*f_pstr - prints the string
+*@head: stack head
+*@counter: line_number
+*Return: none
+*/
+void f_pstr(stack_t **head, unsigned int counter)
+{
+stack_t *h;
+(void)counter;
+
+h = *head;
+while (h)
+{
+if (h->n > 127 || h->n <= 0)
+{
+break;
+}
+printf("%c", h->n);
+h = h->next;
+}
+printf("\n");
+}
+
+
+/**
+ *f_push - add node to the stack
+ *@head: stack head
+ *@counter: line_number
+ *Return: no return
  */
 void f_push(stack_t **head, unsigned int counter)
 {
-int n, flag = 0, x = 0;
+int n, j = 0, flag = 0;
 
-if (lus.arg)
+if (bus.arg)
 {
-if (lus.arg[0] == '-')
-x++;
-for (; lus.arg[x] != '\0'; x++)
+if (bus.arg[0] == '-')
+j++;
+for (; bus.arg[j] != '\0'; j++)
 {
-if (lus.arg[x] > 57 || lus.arg[x] < 48)
+if (bus.arg[j] > 57 || bus.arg[j] < 48)
 flag = 1; }
 if (flag == 1)
 { fprintf(stderr, "L%d: usage: push integer\n", counter);
-fclose(lus.file);
-free(lus.info);
+fclose(bus.file);
+free(bus.content);
 free_stack(*head);
-exit(EXIT_FAILURE);}}
+exit(EXIT_FAILURE); }}
 else
 { fprintf(stderr, "L%d: usage: push integer\n", counter);
-fclose(lus.file);
-free(lus.info);
+fclose(bus.file);
+free(bus.content);
 free_stack(*head);
 exit(EXIT_FAILURE); }
-n = atoi(lus.arg);
-if (lus.lifi == 0)
+n = atoi(bus.arg);
+if (bus.lifi == 0)
 addnode(head, n);
 else
 addqueue(head, n);
 }
+
