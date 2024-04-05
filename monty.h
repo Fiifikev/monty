@@ -1,12 +1,16 @@
 #ifndef monty_h
 #define monty_h
+
+#define  _GNU_SOURCE
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <sys/types.h>
-#include <fcntl.h>
+#include <sys/stat.h>
 #include <ctype.h>
+#include <stddef.h>
 /**
  *struct stack_s - doubly linked list representation of a stack (or queue)
  *@n: integer
@@ -70,7 +74,7 @@ void f_pop(stack_t **head, unsigned int counter);
 void f_swap(stack_t **head, unsigned int counter);
 void f_add(stack_t **head, unsigned int counter);
 void f_nop(stack_t **head, unsigned int counter);
-void f_sub(stack_:wqt **head, unsigned int counter);
+void f_sub(stack_t **head, unsigned int counter);
 void f_div(stack_t **head, unsigned int counter);
 void f_mul(stack_t **head, unsigned int counter);
 void f_queue(stack_t **head, unsigned int counter);
